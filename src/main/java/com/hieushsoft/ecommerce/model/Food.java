@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -46,5 +47,9 @@ public class Food {
 
     @ManyToMany
     private List<IngredientsItem> ingredientsItems = new ArrayList<>();
+
+    private Date creationDate;
+
+    private String openingHours;
 
 }

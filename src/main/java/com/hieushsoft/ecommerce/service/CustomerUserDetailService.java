@@ -1,12 +1,18 @@
 package com.hieushsoft.ecommerce.service;
 
+import com.hieushsoft.ecommerce.enums.user.RoleEnum;
 import com.hieushsoft.ecommerce.model.User;
 import com.hieushsoft.ecommerce.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CustomerUserDetailService implements UserDetailsService {
@@ -21,9 +27,10 @@ public class CustomerUserDetailService implements UserDetailsService {
             throw  new UsernameNotFoundException("user not found with email " + username);
         }
 
-//        USER_ROLE role = user.getUserRole();
+        RoleEnum role = user.getUserRole();
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(role.toString()));
 
-
-        return null;
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
     }
 }

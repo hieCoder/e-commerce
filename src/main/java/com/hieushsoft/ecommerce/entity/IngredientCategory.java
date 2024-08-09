@@ -1,4 +1,4 @@
-package com.hieushsoft.ecommerce.model;
+package com.hieushsoft.ecommerce.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -6,32 +6,26 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CartItem {
+public class IngredientCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
+    private String name;
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "food_id")
-    private Food food;
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
 
-    private int quantity;
-
-    @ElementCollection
-    private List<String> ingredients;
-
-    private Long totalPrice;
+    @OneToMany(mappedBy = "ingredientCategory", cascade = CascadeType.ALL)
+    private List<IngredientsItem> ingredientsItems = new ArrayList<>();
 }

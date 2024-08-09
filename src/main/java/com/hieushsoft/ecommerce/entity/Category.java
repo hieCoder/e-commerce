@@ -1,5 +1,6 @@
-package com.hieushsoft.ecommerce.model;
+package com.hieushsoft.ecommerce.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class IngredientsItem {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,14 +18,9 @@ public class IngredientsItem {
 
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "ingredientCategory_id")
-    private IngredientCategory ingredientCategory;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
-
-    private boolean isStoke = true;
 
 }

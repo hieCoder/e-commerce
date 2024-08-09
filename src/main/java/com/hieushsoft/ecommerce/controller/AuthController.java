@@ -1,7 +1,7 @@
 package com.hieushsoft.ecommerce.controller;
 
 import com.hieushsoft.ecommerce.config.JwtProvide;
-import com.hieushsoft.ecommerce.model.User;
+import com.hieushsoft.ecommerce.entity.User;
 import com.hieushsoft.ecommerce.repository.CartRepository;
 import com.hieushsoft.ecommerce.repository.UserRepository;
 import com.hieushsoft.ecommerce.response.AuthResponse;
@@ -35,6 +35,12 @@ public class AuthController {
 
     public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) {
         User isEmailExist = userRepository.findByEmail(user.getEmail());
+
+        if (isEmailExist != null) throw new IllegalArgumentException("Email already Exists");
+
+        User createUser = new User();
+        createUser.setEmail(user.getEmail());
+
 
         return null;
     }

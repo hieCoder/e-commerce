@@ -1,4 +1,4 @@
-package com.hieushsoft.ecommerce.model;
+package com.hieushsoft.ecommerce.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

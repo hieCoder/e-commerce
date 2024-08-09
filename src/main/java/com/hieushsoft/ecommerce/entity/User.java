@@ -1,4 +1,4 @@
-package com.hieushsoft.ecommerce.model;
+package com.hieushsoft.ecommerce.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hieushsoft.ecommerce.dto.RestaurantDto;
